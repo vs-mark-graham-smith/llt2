@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'TodoController@index');
-Route::get('/todos/upsert', 'TodoController@viewUpsert');
+Route::get('/todos/upsert/{user?}', 'TodoController@viewUpsert');
+Route::post('/todos/upsert{user?}', 'TodoController@doUpsert');
