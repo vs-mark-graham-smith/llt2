@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    restart: unless-stopped
+    ports:
+     - "127.0.0.1:8000:80"
+    working_dir: /var/www
+    environment:
+      DB_HOST: db
+      DB_DATABASE: laravel
+      DB_PASSWORD: laravel
+      DB_USERNAME: laravel
+    volumes:
+      - ./:/var/www:delegated
+    networks:
+      - web
+  db:
+    image: mysql:8.0.20
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: laravel
+      MYSQL_PASSWORD: laravel
+      MYSQL_USER: laravel
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    networks:
+      - web
+networks:
+  web:
+    driver: bridge
