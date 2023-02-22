@@ -11,7 +11,11 @@ class TodoController extends Controller
         return view('todo-list');
     }
 
-    public function upsert(UpsertTodo $request) {
+    public function viewUpsert(Todo $todo = null) {
+
+    }
+
+    public function doUpsert(UpsertTodo $request) {
         //
     }
 

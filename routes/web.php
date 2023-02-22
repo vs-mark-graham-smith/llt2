@@ -11,3 +11,5 @@
 |
 */
 
+Route::get('/', 'TodoController@index');
+Route::get('/todos/upsert', 'TodoController@viewUpsert');
