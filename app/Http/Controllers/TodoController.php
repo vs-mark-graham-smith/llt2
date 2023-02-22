@@ -46,7 +46,19 @@ class TodoController extends Controller
         return redirect('/')->with('success', 'Todo item created!');
     }
 
-    public function destroy() {
+    public function doSaveSortOrder() {
+        //
+    }
 
+    public function doDelete(Todo $todo) {
+        $todo->delete();
+
+        return response()
+            ->json(
+                app(Todo::class)
+                    ->orderBy('order', 'desc')
+                    ->get()
+                    ->toArray()
+            );
     }
 }

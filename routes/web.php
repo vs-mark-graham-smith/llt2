@@ -12,5 +12,7 @@
 */
 
 Route::get('/', 'TodoController@index');
-Route::get('/todos/upsert/{user?}', 'TodoController@viewUpsert');
-Route::post('/todos/upsert{user?}', 'TodoController@doUpsert');
+Route::get('/todos/upsert/{todo?}', 'TodoController@viewUpsert');
+Route::post('/todos/upsert/{todo?}', 'TodoController@doUpsert');
+Route::post('/todos/delete/{todo}', 'TodoController@doDelete');
+Route::post('/todos/save-sort-order', 'TodoController@doSaveSortOrder');
