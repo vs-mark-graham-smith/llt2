@@ -12,7 +12,7 @@ class TodoController extends Controller
     public function index() {
         return view('todo-list', [
             'todoItems' => app(Todo::class)
-                ->orderBy('order', 'asc')
+                ->orderBy('order', 'desc')
                 ->get()
                 ->toArray()
         ]);
