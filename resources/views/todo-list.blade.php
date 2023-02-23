@@ -49,7 +49,7 @@
                     todos: this.todoItems
                 })
                 .then(response => {
-                    console.log({ response })
+                    this.todoItems = response.data
                 })
             },
 
