@@ -5,18 +5,18 @@
     <div class="flex flex-col">
         <div class="mb-2">
             <draggable v-model="todoItems" @end="saveSortOrder">
-                <a :href="`/todos/upsert/${item.id}`" v-for="(item, itemInd) in todoItems" :key="item.id" class="flex flex-row border border-gray-500 p-1" :class="roundedClass(itemInd)">
+                <div @click="redirectToUpsert(item.id)" v-for="(item, itemInd) in todoItems" :key="item.id" class="flex flex-row border border-gray-500 p-1 cursor-pointer" :class="roundedClass(itemInd)">
                     <div class="grow flex-col">
                         <h4>@{{ item.title }}</h4>
                         <hr class="block" />
                         <p>@{{ item.description }}</p>
                     </div>
                     <div>
-                        <button class="bg-gray-400 rounded" @click="deleteTodo(item)">
+                        <button class="bg-gray-400 rounded" @click.stop="deleteTodo(item)">
                             <i class="fas fa-times m-1"></i>
                         </button>
                     </div>
-                </a>
+                </div>
             </draggable>
         </div>
         <a class="bg-red-400 p-4 rounded" href="/todos/upsert">Add a todo item</a>
@@ -58,6 +58,10 @@
                     .then(response => {
                         this.todoItems = response.data
                     })
+            },
+
+            redirectToUpsert(todo) {
+                window.location.href = `/todos/upsert/${todo}`
             }
         }
     })
