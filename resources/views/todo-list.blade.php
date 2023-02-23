@@ -5,7 +5,7 @@
     <div class="flex flex-col">
         <div class="mb-2">
             <draggable v-model="todoItems" @end="saveSortOrder">
-                <div v-for="(item, itemInd) in todoItems" :key="item.id" class="flex flex-row border border-gray-500 p-1" :class="roundedClass(itemInd)">
+                <a :href="`/todos/upsert/${item.id}`" v-for="(item, itemInd) in todoItems" :key="item.id" class="flex flex-row border border-gray-500 p-1" :class="roundedClass(itemInd)">
                     <div class="grow flex-col">
                         <h4>@{{ item.title }}</h4>
                         <hr class="block" />
@@ -16,7 +16,7 @@
                             <i class="fas fa-times m-1"></i>
                         </button>
                     </div>
-                </div>
+                </a>
             </draggable>
         </div>
         <a class="bg-red-400 p-4 rounded" href="/todos/upsert">Add a todo item</a>
