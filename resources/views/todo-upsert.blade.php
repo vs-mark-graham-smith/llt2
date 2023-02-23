@@ -2,7 +2,7 @@
 
 @section('body')
 <div id="el">
-    <form class="flex flex-col" method="POST" action="/todos/upsert">
+    <form class="flex flex-col" method="POST" :action="computedAction">
         @csrf
         <div class="flex flex-col">
             <label for="title">Title</label>
@@ -24,9 +24,11 @@
         data: {
             todo: @json($todo)
         },
-        beforeMount() {
-            // Axios to get todo items
-        },
+        computed: {
+            computedAction() {
+                return '/todos/upsert' + (this.todo.id ? `/${this.todo.id}` : '')
+            }
+        }
     })
 </script>
 @endsection
